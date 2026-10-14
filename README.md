@@ -82,8 +82,3 @@ Verified on October 12, 2026: production build passed; all six Playwright tests 
 
 The supplied reference was [shanshan.dev](https://www.shanshan.dev/). Its HTML, compiled layout/component source, and stylesheet were inspected on October 12, 2026. The web reader could not load it and no interactive browser was connected for an initial visual inspection; direct HTTP access to the site and its assets succeeded. The inspected structure informed the generous spacing, centered layout, thin borders, anchor navigation, restrained theme control, and project detail interaction. This portfolio uses original content, composition, colors, and CSS initials treatments; no reference personal content, branding, photos, project images, or code was copied into the website.
 
-## AI assistance disclosure
-
-OpenAI Codex assisted with interpreting the brief, inspecting the design reference, drafting the React components and editable content structure, styling, accessibility, and verification. Jessiejames Pepito should review, understand, and adapt the code, confirm the project descriptions and personal contributions, and adjust this disclosure to the requirements of the student guide before submission.
-
-The live footer includes a short visible AI assistance note. That note is not a substitute for any specific academic disclosure your guide requires.
