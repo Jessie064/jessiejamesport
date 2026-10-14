@@ -24,6 +24,10 @@ npm run preview
 
 Vite writes the production website to `dist/`. Serve that directory with any static web host. This project has no backend, contact form, API keys, or runtime secrets. Preview uses `http://127.0.0.1:4173` by default.
 
+## Loading animation
+
+On initial page load, the navigation stays visible while a theme-aware shimmer skeleton mirrors the actual hero: the two-line name, role, introduction, buttons, circular portrait, and location row. It uses the same Hero component and responsive rules as the finished page. The portfolio fades in once the fonts and hero portrait are ready. The skeleton stays briefly visible for 700 ms on a fast connection and releases after at most 3.5 seconds if an asset stalls. Reduced motion shows a static skeleton, skips the minimum delay, and disables the reveal animation. Reusable skeleton primitives live in `src/components/Skeleton.jsx`; section presets remain in `src/components/SkeletonLoader.jsx`.
+
 ## GitHub space game
 
 Below Contact, Contribution Invaders turns public GitHub activity into a playable monochrome space game inspired by `public/images/game.png`. It uses the profile in `contact.github`. Move with the arrow keys or A/D and fire with Space, or use the on-screen buttons. P or Escape pauses; leaving the game or switching tabs also pauses it. Resizing preserves progress and pauses play. The game starts only when Play is selected, including with reduced motion enabled.

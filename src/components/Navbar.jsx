@@ -12,6 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const updateActive = () => {
+      if (document.querySelector('main[aria-busy="true"]')) { setActive('home'); return; }
       const marker = window.scrollY + 160;
       let current = 'home';
       for (const item of navigation) {

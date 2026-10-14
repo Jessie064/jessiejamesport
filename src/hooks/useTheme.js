@@ -19,6 +19,7 @@ export function useTheme() {
     };
     system.addEventListener('change', onSystemChange);
     window.addEventListener('storage', onStorage);
+    onSystemChange();
     return () => {
       system.removeEventListener('change', onSystemChange);
       window.removeEventListener('storage', onStorage);

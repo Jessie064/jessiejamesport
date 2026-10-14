@@ -31,6 +31,8 @@
   --panel-ink: #44403c;
   --nav-bg: rgb(250 250 249 / 94%);
   --shadow: 0 24px 100px rgb(0 0 0 / 18%);
+  --skeleton-base: #e7e5e4;
+  --skeleton-highlight: #f5f5f4;
   color-scheme: light;
 }
 
@@ -53,6 +55,8 @@
   --panel-ink: #d6d3d1;
   --nav-bg: rgb(12 10 9 / 94%);
   --shadow: 0 24px 100px rgb(0 0 0 / 40%);
+  --skeleton-base: #1c1917;
+  --skeleton-highlight: #292524;
   color-scheme: dark;
 }
 
@@ -423,4 +427,67 @@ svg { flex-shrink: 0; }
   .typing-character { opacity: 1; }
   .typing-cursor::after { display: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ──── Skeleton loader (motion-style shimmer) ──── */
+.skeleton-bone { position: relative; overflow: hidden; background: var(--skeleton-base); }
+.skeleton-shimmer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--skeleton-highlight) 40%,
+    var(--skeleton-highlight) 60%,
+    transparent 100%
+  );
+  will-change: transform;
+  transform: translateX(-100%);
+  animation: skeleton-sweep 1.6s ease-in-out infinite;
+}
+@keyframes skeleton-sweep { to { transform: translateX(100%); } }
+.skeleton-reveal { position: relative; }
+
+/* Layout */
+.portfolio-loading-screen { min-height: calc(100svh - 88px); }
+.hero-text-skeleton { position: relative; display: inline-block; max-width: 100%; vertical-align: top; }
+.skeleton-reserve { visibility: hidden; }
+.hero-text-skeleton > .skeleton-bone { position: absolute; top: .17em; left: 0; display: block; }
+.hero-paragraph-skeleton { display: block; }
+.hero-paragraph-skeleton > .skeleton-bone { top: 0; mask-image: repeating-linear-gradient(to bottom, transparent 0 .4em, #000 .4em 1.2em, transparent 1.2em 1.9em); }
+.hero-loading .hero-profile { position: relative; pointer-events: none; }
+.hero-photo-skeleton { position: absolute; inset: 0; }
+.hero-button-skeleton { background: var(--skeleton-base); border-color: transparent; color: transparent; }
+.hero-button-skeleton svg, .hero-loading .hero-footer svg, .hero-loading .status-dot { visibility: hidden; }
+.loader-status { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 24px; color: var(--muted); font-size: 12px; letter-spacing: .2px; }
+.loader-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); animation: loader-breathe 1.6s ease-in-out infinite; }
+.portfolio-content { animation: portfolio-reveal 350ms ease-out both; }
+@keyframes loader-breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes portfolio-reveal { from { opacity: 0; } to { opacity: 1; } }
+.skeleton-page { padding-top: 100px; }
+.skeleton-hero { padding-block: 80px 48px; }
+.skeleton-hero .hero-main { display: grid; grid-template-columns: 1.35fr 1fr; align-items: center; gap: 70px; padding-bottom: 70px; }
+.skeleton-hero .hero-copy { display: flex; flex-direction: column; }
+.skeleton-portrait-wrap { justify-self: end; }
+.skeleton-buttons { display: flex; gap: 12px; margin-top: 28px; }
+.skeleton-section-heading { margin-bottom: 36px; }
+.skeleton-about .about-grid { display: grid; grid-template-columns: .8fr 1.3fr; gap: 65px; align-items: start; }
+.skeleton-portrait-box { max-width: 350px; }
+.skeleton-about-copy { display: flex; flex-direction: column; }
+.skeleton-education-row { display: flex; align-items: center; gap: 16px; padding: 21px 0; margin-top: 25px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.skeleton-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 12px; }
+.skeleton-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.skeleton-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+.skeleton-cards { gap: 22px; }
+.skeleton-project-image { aspect-ratio: 1.6; overflow: hidden; }
+.skeleton-game { margin-top: 20px; }
+@media (max-width: 48rem) {
+  .portfolio-loading-screen { min-height: calc(100svh - 73px); }
+  .skeleton-hero .hero-main { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+  .skeleton-portrait-wrap { justify-self: center; order: -1; }
+  .skeleton-buttons { justify-content: center; }
+  .skeleton-about .about-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer { display: none; }
+  .loader-status-dot, .portfolio-content { animation: none; }
 }
